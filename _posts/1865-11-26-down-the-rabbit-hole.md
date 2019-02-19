@@ -7,8 +7,8 @@ date: 1865-11-26 10:18:00
 tags: fiction
 subclass: 'post tag-fiction'
 logo: 'assets/images/ghost.png'
-author: lewis
-categories: lewis
+author: lanphere
+categories: lanphere
 disqus: true
 ---
 
