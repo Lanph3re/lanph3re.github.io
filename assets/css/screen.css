@@ -602,6 +602,16 @@ body.nav-opened .site-wrapper {
     background: rgba(0, 0, 0, 0.5);
 }
 
+.post-head .dark-background {
+    min-height: 180px;
+    height: 65vh;
+}
+
+.no-cover.post-head.main-header .dark-background{
+    height: 85px;
+    min-height: 0;
+}
+
 .main-nav {
     position: relative;
     padding: 35px 40px;
@@ -1786,6 +1796,14 @@ body.page-template .post-title {
         padding: 15% 0;
     }
 
+    .post-head .dark-background {
+        height: 45vh;
+    }
+
+    .no-cover.post-head.main-header {
+        height: 55px;
+    }
+
     .scroll-down,
     .home-template .main-header:after { display: none; }
 
@@ -1943,6 +1961,10 @@ body.page-template .post-title {
 
     .dark-background {
         height: 40vh;
+    }
+
+    .post-head .dark-background {
+        height: 30vh;
     }
 
     .main-nav {
