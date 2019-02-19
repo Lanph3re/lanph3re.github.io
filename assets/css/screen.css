@@ -1791,7 +1791,7 @@ body.page-template .post-title {
     }
 
     .dark-background {
-        min-height: 240px
+        min-height: 240px;
         height: 60vh;
     }
 
