@@ -9,6 +9,7 @@ subclass: 'post tag-speeches'
 logo: 'assets/images/ghost.png'
 author: martin
 categories: martin
+disqus: true
 ---
 
 I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.

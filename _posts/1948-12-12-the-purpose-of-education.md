@@ -9,6 +9,7 @@ subclass: 'post tag-speeches'
 logo: 'assets/images/ghost.png'
 author: martin
 categories: martin
+disqus: true
 ---
 
 As I engage in the so-called "bull sessions" around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the "brethren" think that education should equip them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.

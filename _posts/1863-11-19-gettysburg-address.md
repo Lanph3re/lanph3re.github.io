@@ -8,6 +8,7 @@ tags: fiction
 subclass: 'post tag-fiction'
 author: abraham
 categories: abraham
+disqus: true
 ---
 
 Fourscore and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
