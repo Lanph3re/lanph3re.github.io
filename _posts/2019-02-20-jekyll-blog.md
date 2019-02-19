@@ -5,6 +5,7 @@ navigation: True
 title: Jekyll 블로그 만드는 중
 date: 2019-02-20 00:51:00 +0900
 tags: blog jekyll
+subclass: 'post'
 logo: 'assets/images/ghost.png'
 author: lanphere
 categories: lanphere
