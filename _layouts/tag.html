@@ -22,6 +22,8 @@ current: tag
 
 <!-- If we have a tag cover, display that - else blog cover - else nothing -->
 <header class="main-header tag-head {% if page.cover %}" style="background-image: url({{ site.baseurl }}{% if new_cover %}{{ new_cover }}{% else %}{{ page.cover }}{% endif%}) {% else %}no-cover{% endif %}">
+    <div class="dark-background"
+         style="position: absolute; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.3);"></div>
     <nav class="main-nav overlay clearfix">
         {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
         {% if page.navigation %}
