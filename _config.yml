@@ -30,7 +30,7 @@ assets_url: '/assets/'
 favicon: /assets/built/images/favicon.jpg
 
 # Permalinks
-permalink: /pretty
+permalink: pretty
 # permalink: /author/:username
 # permalink: /tag/:tag
 

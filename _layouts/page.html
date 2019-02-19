@@ -11,8 +11,7 @@ class: 'page-template'
 <!-- #post -->
 
 <header class="main-header post-head {% if page.cover %}" style="background-image: url({{ site.baseurl }}{{ page.cover }}){% else %}no-cover{% endif %}">
-    <div class="dark-background"
-         style="position: absolute; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.3);"></div>
+    <div class="dark-background"></div>
     <nav class="main-nav {% if page.cover %}overlay{% endif %} clearfix">
         {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
         {% if page.navigation %}

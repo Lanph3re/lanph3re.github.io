@@ -16,6 +16,7 @@ current: author
 <!-- Everything inside the #author tags pulls data from the author -->
 <!-- #author  -->
     <header class="main-header author-head {% if page.cover %}" style="background-image: url({{ site.baseurl }}{{ page.cover }}) {% else %}no-cover{% endif %}">
+        <div class="dark-background"></div>
         <nav class="main-nav overlay clearfix">
             {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
             {% if page.navigation %}
