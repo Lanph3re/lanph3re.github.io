@@ -7,7 +7,7 @@ paginate: 5
 language: 'en-uk'
 
 # Website info
-name: :Lanph3re's Blog"
+name: "Lanph3re's Blog"
 description: "Development & Hacking"
 
 short_url: 'lanph3re.github.io/'
