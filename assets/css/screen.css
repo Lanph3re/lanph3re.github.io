@@ -598,7 +598,7 @@ body.nav-opened .site-wrapper {
     position: relative;
     padding: 35px 40px;
     margin: 0 0 30px 0;
-    z-index: 1000;
+    z-index: 5;
 }
 
 .main-nav a {
