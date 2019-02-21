@@ -1,0 +1,86 @@
+---
+layout: post
+cover: 'assets/images/cover8.jpg'
+navigation: true
+title: 로그인 후 이전 페이지로 리디렉션하기
+date: 2019-02-13
+tags: nodejs 블로그 개발
+subclass: 'post'
+logo: 'assets/images/ghost.png'
+author: lanphere
+categories: lanphere
+disqus: true
+---
+
+<br>블로그에서 글쓰기 버튼을 누르면 세션 유무를 검사해서 로그인 페이지로 리디렉트 시킨다.<br>
+로그인을 하면 블로그 메인화면으로 리디렉트하게 구현했었는데, 그렇게 말고 글쓰기 화면으로 바로 리디렉트 해주고 싶었다.<br>
+어떻게 하면 할 수 있을까 이런저런 고민을 해보다가 <span style="color: rgb(0, 0, 255);">req.header('Referer')</span>에 이전 페이지의 URL이 담겨있다고
+한다.<br>
+<pre>router.post('/login', (req, res) => {
+  let id = req.body.id;
+  let passwd = req.body.passwd;
+
+  if (id == ADMIN_ID && passwd == ADMIN_PASSWD) {
+    req.session.user = {
+      'name': 'admin',
+    }
+    res.redirect('/');
+  } else {
+    res.redirect('/login');
+  }
+});<br></pre>
+로그인 폼에 입력한 Id와 Password를 처리하는 부분인데 여기서 리디렉트를 시키기 때문에 처음엔 여기 Referer를 넣을까 생각했는데<br>
+해보니 제대로 안됐다. 그래서<br>
+<pre>router.get('/login', (req, res) => {
+  console.log(req.header('Referer'));
+
+  if (req.session.user) {
+    res.redirect('/');
+  } else {
+    res.render('login');
+  }
+});<br></pre>
+여기서 login페이지를 렌더링하기 전에 Referer정보를 같이 페이지의 form데이터에 넣어볼까 생각도 했다.<br>
+그런데 Referer를 콘솔에서 디버깅해본 결과 <span style="color: rgb(0, 0, 255);">글쓰기 페이지의 URL이 아니라 글쓰기 버튼을 누르던 페이지의 URL</span>이였다.<br>
+글쓰기 페이지에서 리디렉트 돼 로그인페이지로 온 것이기 때문에 여기 부분에 Referer를 넣으면 글쓰기 페이지의 URL<br>
+가 될 것이라는 생각이었다. 하지만 글쓰기 페이지로 GET요청이 왔을 때 세션이 없으면 바로 로그인 페이지로 리디렉트시키기<br>
+때문에 글쓰기 페이지의 URL이아니라 글쓰기 페이지를 요청한 페이지의 URL이 Referer에 들어간 것으로 추측했다. <br>
+다른 방법을 찾아보다가 생각보다 간단했다. <span style="color: rgb(0, 0, 255);">바로 세션을 이용하는 것이다</span>.<br>
+글쓰기 페이지로 GET요청이 들어왔을 때 리디렉트를 시키기 전에 세션정보에 글쓰기 페이지의 URL을 담는 것이다.<br>
+<pre>router.get('/write', (req, res) => {
+  if (req.session.user) {
+    categories
+      .find({ $where: 'this.is_parent == true' })
+      .populate('children')
+      .exec((err, parent_categories) => {
+        if (err) throw err
+        res.render('write', { parent_categories: parent_categories });
+      });
+  } else {
+    req.session.returnURL = '/write';
+    res.redirect('/login');
+  }
+});</pre>
+이렇게 세션에 글쓰기 페이지의 URL을 담고<br>
+<pre>router.post('/login', (req, res) => {
+  let id = req.body.id;
+  let passwd = req.body.passwd;
+
+  if (id == ADMIN_ID && passwd == ADMIN_PASSWD) {
+    req.session.user = {
+      'name': 'admin',
+    }
+
+    if (req.session.returnURL) {
+      let returnURL = req.session.returnURL;
+      delete req.session.returnURL;
+      res.redirect(returnURL);
+    } else {
+      res.redirect('/');
+    }
+  } else {
+    res.redirect('/login');
+  }
+});<br></pre>
+이렇게 로그인을 처리하고나서 세션에 URL정보가 있는 지를 확인해서 적절하게 리디렉트 시켜주게 구현했다.<br>
+이렇게 하니까 내가 원하는 대로 잘 작동했다.<br>

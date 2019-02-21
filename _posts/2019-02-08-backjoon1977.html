@@ -1,0 +1,80 @@
+---
+layout: post
+cover: 'assets/images/cover8.jpg'
+navigation: true
+title: 백준1977 - 완전제곱수
+date: 2019-02-08
+tags: 백준 알고리즘 문제풀이 c++
+subclass: 'post'
+logo: 'assets/images/ghost.png'
+author: lanphere
+categories: lanphere
+disqus: true
+---
+
+<div class="headline"
+  style="margin-top: 10px; margin-bottom: 25px; border-bottom: 1px dotted rgb(228, 233, 240); color: rgb(51, 51, 51);"
+  open="" sans",="" "apple="" sd="" gothic="" neo" ,="" "noto="" sans="" cjk="" kr" ,="" 나눔바른고딕,="" 나눔고딕,=""
+  맑은고딕,="" "helvetica="" neue" ,="" helvetica,="" arial,="" sans-serif;="" font-size:="" 13px;="" border-radius:=""
+  0px="" !important;"="">
+  <h2
+    style="font-weight: normal; line-height: 33px; color: rgb(88, 95, 105); margin-top: 0px; margin-bottom: -2px; font-size: 22px; text-shadow: none; padding-bottom: 5px; display: inline-block; border-bottom: 2px solid rgb(0, 118, 192); border-radius: 0px !important;"
+    open="" sans",="" "apple="" sd="" gothic="" neo" ,="" "noto="" sans="" cjk="" kr" ,="" 나눔바른고딕,="" 나눔고딕,=""
+    맑은고딕,="" "helvetica="" neue" ,="" helvetica,="" arial,="" sans-serif="" !important;"="">입력</h2>
+</div>
+<div id="problem_input" open="" sans",="" "apple="" sd="" gothic="" neo" ,="" "noto="" sans="" cjk="" kr" ,=""
+  나눔바른고딕,="" 나눔고딕,="" 맑은고딕,="" "helvetica="" neue" ,="" helvetica,="" arial,="" sans-serif;="" font-size:="" medium;=""
+  line-height:="" 30px;="" border-radius:="" 0px="" !important;"="">
+  <p style="color: rgb(85, 85, 85); border-radius: 0px !important;">첫째 줄에 M이, 둘째 줄에 N이 주어진다. M과 N은 10000이하의 자연수이며 M은 N보다
+    같거나 작다.</p>
+  <div class="headline"
+    style="color: rgb(51, 51, 51); margin-top: 10px; margin-bottom: 25px; border-bottom: 1px dotted rgb(228, 233, 240);"
+    open="" sans",="" "apple="" sd="" gothic="" neo" ,="" "noto="" sans="" cjk="" kr" ,="" 나눔바른고딕,="" 나눔고딕,=""
+    맑은고딕,="" "helvetica="" neue" ,="" helvetica,="" arial,="" sans-serif;="" font-size:="" 13px;="" border-radius:=""
+    0px="" !important;"="">
+    <h2
+      style="font-weight: normal; line-height: 33px; color: rgb(88, 95, 105); margin-top: 0px; margin-bottom: -2px; font-size: 22px; text-shadow: none; padding-bottom: 5px; display: inline-block; border-bottom: 2px solid rgb(0, 118, 192); border-radius: 0px !important;"
+      open="" sans",="" "apple="" sd="" gothic="" neo" ,="" "noto="" sans="" cjk="" kr" ,="" 나눔바른고딕,="" 나눔고딕,=""
+      맑은고딕,="" "helvetica="" neue" ,="" helvetica,="" arial,="" sans-serif="" !important;"="">출력</h2>
+  </div>
+  <div id="problem_output" open="" sans",="" "apple="" sd="" gothic="" neo" ,="" "noto="" sans="" cjk="" kr"
+    ,="" 나눔바른고딕,="" 나눔고딕,="" 맑은고딕,="" "helvetica="" neue" ,="" helvetica,="" arial,="" sans-serif;="" line-height:=""
+    30px;="" border-radius:="" 0px="" !important;"="">
+    <p style="color: rgb(85, 85, 85); border-radius: 0px !important;">M이상 N이하의 자연수 중 완전제곱수인 것을 모두 찾아 첫째 줄에 그 합을, 둘째 줄에 그
+      중 최솟값을 출력한다. 단, M이상 N이하의 자연수 중 완전제곱수가 없을 경우는 첫째 줄에 -1을 출력한다.</p>
+    <p style="color: rgb(85, 85, 85); border-radius: 0px !important;"><br></p>
+    <p style="color: rgb(85, 85, 85); border-radius: 0px !important;">오랜만에 풀어보는 것 같다. 별로 어렵지 않은 문제이다. 입력으로 자연수 M, N을 받으면
+      그 사이에 있는 완전 제곱수들의 합과 그 중 최솟값을 출력해야한다. M, N이 있을 때 M, N의 제곱근을 생각해보자.</p>
+    <p style="color: rgb(85, 85, 85); border-radius: 0px !important;">60, 100이 있다고 가정하면 7 * 7 = 49 < 60 << 8 * 8=64 이므로
+        60의 제곱근은 약 7.x이다. 100의 제곱근은 10이니까 (7.x)^2 와 (10)^2 사이에 있을 수 있는 완전 제곱수는 8^2, 9^2, 10^2가 될 것이다.</p> <p
+        style="color: rgb(85, 85, 85); border-radius: 0px !important;">만약 입력이 75, 80이라면 75의 제곱근은 8.x이고, 80의 제곱근또한 8.x이다.
+        (8.x)^2보다 크면서 (8.x)^2보다 작은 완전 제곱수는 존재하지 않는다. 약간 설명이 애매할 수 있는데, 여기서 완전제곱수는 당연히 자연수의 제곱이기 때문에 75보다 큰 완전제곱수는 최소
+        9^2이다. 80보다 작은 완전제곱수는 최대 8^2이다. 따라서 존재하지 않는 것이다. 코드를 보면 이해가 갈 것이다.</p>
+    <pre style="border-radius: 0px !important;"><code>#include
+#include
+
+using namespace std;
+
+int main () {
+  int M, N;
+  int sum = 0;
+
+  cin >> M >> N;
+
+  M = ceil(sqrt(M));
+  N = floor(sqrt(N));
+
+  for (int i = M; i <= N; i++) {
+    sum += i * i;
+  }
+  
+  if (sum) {
+    cout << sum << endl << M * M;
+  } else {
+    cout << -1 << endl;
+  }
+
+  return 0;
+}</code></pre>
+  </div>
+</div>

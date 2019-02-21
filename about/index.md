@@ -7,4 +7,4 @@ logo: 'assets/images/ghost.png'
 current: about
 ---
 
-I am a student in Korea University. I am studying web development and pwn.
+I am a student in Korea University. I am studying development and pwn.

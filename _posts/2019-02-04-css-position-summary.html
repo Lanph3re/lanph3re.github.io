@@ -1,0 +1,53 @@
+---
+layout: post
+cover: 'assets/images/cover8.jpg'
+navigation: true
+title: CSS position 종류를 정리해보자
+date: 2019-02-04
+tags: html 개발 프론트엔드
+subclass: 'post'
+logo: 'assets/images/ghost.png'
+author: lanphere
+categories: lanphere
+disqus: true
+---
+
+<blockquote>
+  블로그 디자인을 계속 건드리다보니 CSS에서 position 값을 건드릴 때가 있다. 아직 확실하게 이해했다곤 못하지만 조금이나마 공부를 해보고 정리를 해봤다. <a
+    href="https://www.w3schools.com/cssref/pr_class_position.asp">https://www.w3schools.com/cssref/pr_class_position.asp</a> 의
+  내용을 정리했다.<br>
+</blockquote>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td style="text-align: center;"><b>Value</b></td>
+      <td style="text-align: center;"><b>Description</b></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">static</td>
+      <td>기본값. Elements가 Document flow에 따라 배치됨</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">absolute<br></td>
+      <td>Element가 속성이 static이 아니면서 가장 가까운 부모의 위치를 기준으로 해서 배치됨</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">fixed</td>
+      <td>Element가 브라우저 창을 기준으로 배치됨</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">relative</td>
+      <td>Element의 속성이 static이였다면 배치됐을 위치를 기준으로 배치됨</td>
+    </tr>
+  </tbody>
+</table>
+<p style="text-align: left;">이 외에도 sticky, initial, inherit 이라는 속성이 있다. 자주 쓰이는 속성은 아닌 것 같아서 다음에 필요하면 정리해봐야겠다.<br>
+  <p style="text-align: left;">    <font color="#104a5a">static</font>은 기본값이고 Document flow에 따라 배치된다고 한다. 여기서 Document
+    flow도 무엇인지 궁금할 수 있다. 이것도 다음에 필요하면 정리할 생각이다. Normal flow라고도 하는데, 정 궁금하면 그냥 position: static으로 해놓고 어디 배치됐는지 확인해보면 그게
+    normal flow다(노양심). <br>
+    <p style="text-align: left;">    기준을 삼고 상대적인 위치에 배치하는 <font color="#104a5a" style="">absolute, fixed, relative
+      </font>
+      속성은 기준으로부터 위치가 어떻게 되는 지를 <u>top, right, bottom, left 속성으로 명시를 해주면 된다.</u><br>
+      <p style="text-align: left;">    간단한 팁이라면 부모의 position 속성을 relative로 한다. 그리고 top같은 속성을 주지 않으면 static과 배치되는 위치가 같다.
+        그
+        상태에서 자식 Element의 position을 absolute로 놓고 디자인을 설계하면 내가 생각한 대로 디자인하기가 용이해진다. 부모를 기준으로 자식의 위치를 잡을 수 있기 때문이다.<br>

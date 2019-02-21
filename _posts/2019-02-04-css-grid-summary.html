@@ -1,0 +1,35 @@
+---
+layout: post
+cover: 'assets/images/cover8.jpg'
+navigation: true
+title: CSS 그리드 정리
+date: 2019-02-04
+tags: css grid 개발 공부
+subclass: 'post'
+logo: 'assets/images/ghost.png'
+author: lanphere
+categories: lanphere
+disqus: true
+---
+
+<blockquote>
+  CSS는 웹의 디자인을 구성하는 데 있어 빠질 수 없는 요소이다. 하지만 웹의 전체적인 레이아웃을 어떻게하면 쉽고 편리하게 만들 지에 대한 물음에 오랫동안 제대로 된 답을 내놓을 수 없었다. 그에 대한
+  해답으로 나온 것이 Flexbox라고 한다. Flexbox에 대해서 공부해보진 않았지만 Flexbox는 1차원적인 방식으로 웹의 레이아웃을 디자인하기 때문에 좀 더 나은 방안을 찾다가 나온 것이 CSS
+  Grid라고 할 수 있다.<br>
+</blockquote>
+CSS Grid는 요즘이야 웬만한 브라우저에서 모두 지원하지만, 혹시나.. 아닐 수도 있으니 <a href="https://caniuse.com/">https://caniuse.com/</a> 에서 grid라고
+입력하면 각 브라우저 버전별로 지원여부를 확인할 수 있다.<br>
+<br><br>
+<h4>CSS Grid에서 쓰이는 용어</h4>
+Grid는 사전에 검색해보면 격자란 뜻을 가지고 있다. CSS Grid는 말 그대로 홈페이지 전체를 격자, 즉 표(Table)처럼 나눠서 레이아웃을 관리하려는 방법이다. 어떤 표가 있다고 가정하면 표의 셀
+하나하나를 <span style="background-color: rgb(156, 198, 239);">Grid Item</span>이라고 부른다. 그리고 그 <span
+  style="background-color: rgb(156, 198, 239);">Grid Item</span>을 담고 있는, 즉 표 자체를 <span
+  style="background-color: rgb(156, 198, 239);">Grid Container</span>라고 한다. <span
+  style="background-color: rgb(156, 198, 239);">Grid Container</span>에서 각 행(열)을 이루는 가로선(세로선) 들을 <span
+  style="background-color: rgb(156, 198, 239);">Grid Line</span>이라고 부른다.<br>
+<img src="https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-line.svg" style="width: 25%;"><br>
+위 그림에서<br>
+표 전체: Grid Container<br>
+회색 셀 하나 : Grid Item<br>
+노란 세로선, 검은 가로(세로)선: Grid Line<br>
+으로 정리할 수 있다.<br>

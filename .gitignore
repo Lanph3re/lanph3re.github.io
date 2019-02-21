@@ -12,6 +12,9 @@
 # others
 *.swp
 
+# drafts
+/_drafts
+
 # site build
 *.gem
 *.rbc
