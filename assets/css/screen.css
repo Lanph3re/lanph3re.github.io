@@ -2000,10 +2000,14 @@ body.page-template .post-title {
         padding: 60px 9% 5%;
     }
 
-    .inner,
+    .inner {
+      width: auto;
+      margin: 2rem auto;
+    }
+
     .pagination {
         width: auto;
-        margin: 2rem auto;
+        margin: 2rem 16px;
     }
 
     .post {
@@ -2135,12 +2139,6 @@ body.page-template .post-title {
 
     .author-meta li:before {
         display: none;
-    }
-
-    .older-posts,
-    .newer-posts {
-        position: static;
-        margin: 10px 0;
     }
 
     .site-footer {
