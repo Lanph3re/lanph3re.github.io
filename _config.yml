@@ -12,7 +12,7 @@ name: "Lanph3re's Blog"
 description: "Development & Hacking"
 
 short_url: 'lanph3re.github.io'
-#google_analytics: UA-69281367-1
+google_analytics: UA-134912255-1
 disqus: lanph3re
 
 # Google Search Console에서 사용하는 sitemap.xml 생성시
