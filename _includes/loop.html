@@ -39,9 +39,9 @@
             {% if post.tags.size > 0 %}
                 {% for tag in post.tags %}
                     {% if forloop.index == post.tags.size %}
-                       <span class="post-tag"><a href='{{ site.baseurl }}/tag/{{ tag }}'>{{ tag | capitalize }}</a></span>
+                       <span class="post-tag"><a href='{{ site.baseurl }}/tags/#{{ tag }}'>{{ tag | capitalize }}</a></span>
                     {% else %}
-                       <span class="post-tag"><a href='{{ site.baseurl }}/tag/{{ tag }}'>{{ tag | capitalize }}</a></span>
+                       <span class="post-tag"><a href='{{ site.baseurl }}/tags/#{{ tag }}'>{{ tag | capitalize }}</a></span>
                     {% endif %}
                 {% endfor %}
             {% endif %}

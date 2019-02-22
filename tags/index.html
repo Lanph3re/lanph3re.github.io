@@ -1,0 +1,72 @@
+---
+layout: default
+title: TAGS
+cover: 'assets/images/cover10.png'
+class: 'home-template'
+navigation: True
+logo: 'assets/images/ghost.png'
+current: tags
+---
+<!-- < default -->
+<!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
+
+<!-- The big featured header  -->
+<header class="main-header post-head {% if page.cover %}"
+  style="background-image: url({{ site.baseurl }}/{{ page.cover }}) {% else %}no-cover{% endif %}">
+  <div class="dark-background"></div>
+  <nav class="main-nav overlay clearfix">
+    {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/{{ page.logo }}"
+        alt="Blog Logo" /></a>{% endif %}
+    {% if page.navigation %}
+    <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    {% endif %}
+  </nav>
+  <div class="vertical">
+    <div class="main-header-content inner">
+      <h1 class="page-title">TAGS</h1>
+    </div>
+  </div>
+  <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+<!-- The main content area on the homepage -->
+<main id="content" class="content" role="main">
+
+  <article class="post">
+    <!-- Get the tag name for every tag on the site and set them
+to the `site_tags` variable. -->
+    {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+
+    <!-- `tag_words` is a sorted array of the tag names. -->
+    {% assign tag_words = site_tags | split:',' | sort %}
+
+    <!-- List of all tags -->
+    <ul class="tags">
+      {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+      {% capture this_word %}{{ tag_words[item] }}{% endcapture %}
+      <li class="post-tag">
+        <a href="#{{ this_word | cgi_escape }}">{{ this_word }} <span>({{ site.tags[this_word].size }})</span>
+        </a>
+      </li>
+      {% endunless %}{% endfor %}
+    </ul>
+
+  </article>
+  
+  <!-- Posts by Tag -->
+  {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+  {% capture this_word %}{{ tag_words[item] }}{% endcapture %}
+  <article class="post">
+    <h3 id="{{ this_word | cgi_escape }}">{{ this_word }}</h3>
+    {% for post in site.tags[this_word] %}{% if post.title != null %}
+    <div>
+      <span style="float: left; padding-left: 10px;">
+        <a class="tagged-post" href="{{ post.url }}">{{ post.title }}</a>
+      </span>
+    </div>
+    <div style="clear: both;"></div>
+    {% endif %}{% endfor %}
+  </article>
+  {% endunless %}{% endfor %}
+
+</main>

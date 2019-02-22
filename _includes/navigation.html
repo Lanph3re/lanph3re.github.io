@@ -4,8 +4,10 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home {% if page.current == 'home' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}/">Home</a></li>
-        <li class="nav-about {% if page.current == 'about' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}/about">About</a></li>
+        <li class="nav-home {% if page.current == 'home' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}/">HOME</a></li>
+        <li class="nav-about {% if page.current == 'about' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}/about">ABOUT</a></li>
+        <li class="nav-tags {% if page.current == 'tags' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}/tags">TAGS</a></li>
+        <li class="nav-archive {% if page.current == 'archive' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}/archive">ARCHIVE</a></li>
     </ul>
     <a class="subscribe-button icon-feed" href="{{ site.baseurl }}/feed.xml">Subscribe</a>
 </div>

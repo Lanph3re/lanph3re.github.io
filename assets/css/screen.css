@@ -599,7 +599,7 @@ body.nav-opened .site-wrapper {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .main-nav {
@@ -1097,14 +1097,42 @@ body.page-template .post-title {
   margin-top: 15px;
 }
 
+ul.tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.tags li {
+  display: inline-block;
+  line-height: 20px;
+  margin: 0;
+}
+
 .post-tag {
   padding: 0px 10px;
   border-radius: 10px;
   border: 1px solid #525252;
+  text-decoration: none;
 }
 
 .post-tag a {
   color: #525252;
+  text-decoration: none;
+}
+
+a.post-tag:hover {
+  color: rgb(185, 185, 185);
+}
+
+a.tagged-post,
+a.archive-post {
+  text-decoration: none;
+}
+
+a.tagged-post:hover,
+a.archive-post:hover {
+  color: rgb(185, 185, 185);
 }
 
 .user-image {
