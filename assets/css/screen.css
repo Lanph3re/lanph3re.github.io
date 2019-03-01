@@ -1058,6 +1058,8 @@ body.page-template .post-title {
     font-size: 1.5rem;
     line-height: 2.2rem;
     color: #9EABB3;
+    animation: fade-in-down 0.6s both;
+    animation-delay: 0.2s;
 }
 
 .author-thumb {
@@ -1698,7 +1700,7 @@ a.archive-post:hover {
 
 /* On page2+ make all the headers smaller */
 .paged .main-header {
-    max-height: 30vh;
+    max-height: 35vh;
 }
 
 /* On page2+ show extra pagination controls at the top of post list */
@@ -2144,7 +2146,7 @@ a.archive-post:hover {
 
     .post-content img {
         padding: 0;
-        width: calc(100% + 32px); /* expand with to image + margins */
+        width: calc(90% + 32px); /* expand with to image + margins */
         min-width: 0;
         max-width: 112%; /* fallback when calc doesn't work */
     }
