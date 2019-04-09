@@ -162,11 +162,13 @@ S_ID | PROF
 2017450123|Tom
 2017320123|Johnson
 
-COURSE_NAME | PROF
+PROF | COURSE_NAME
 ------------|------
 Jack|Database
 Smith|Operating System
 Tom|Operating System
 Johnson|Computer Architecture
 
+원래 Relation이 BCNF를 만족하지 못했던 PROF -> COURSE_NAME 관계에서 결정자인 PROF만 원래 Relation에 남겨놓고
+PROF -> COURSE_NAME에 대해 새로운 Relation을 만든다.
 이렇게 두 Relation으로 나누면 BCNF를 만족하게 할 수 있다.
