@@ -31,3 +31,6 @@ test/version_tmp
 tmp
 vendor
 Gemfile.lock
+
+# vscode
+.vscode
