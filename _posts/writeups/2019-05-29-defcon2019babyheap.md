@@ -55,18 +55,18 @@ The vulnerability is that there is one-byte overflow getting input. So we can ov
 The overall idea is as follows. 
 1. There are three chunks. Size field of second chunk should be 0x101(chunks that are allocated with malloc(0xf8)).
 2. Then free the first chunk and allocate with the same size, and overwrite size filed of second chunk with 0x181(size same as the size of chunk via malloc(0x178)).
-3. Free the second chunk and allocate again. then we can overwrite large part of third chunk.
+3. Free the second chunk and allocate again. Then we can overwrite large part of third chunk.
 
 The reason that this vulnerability is possible is that this challenge uses glibc version of 2.29, which uses tcache, and tcache doesn't check the next chunk of to-be-freed chunk.
 
 ### Libc Leak
 
 To leak base address of libc, the scenario is as follows.
-1. allocate two chunks. Size of second chunk shoud be 0x101.
-2. allocate 7 chunks whose size are 0x181.
-3. free chunks whose indexes are between 3 and 9.(tcache becomes saturated with 7 chunks)
-4. free second chunk. this freed chunk goes in unsorted bin
-5. allocate a 0x178-size chunk. then third chunk is overwritten with size field of 0x80 and fd value of libc address. (pointer of third chunk is not deleted)
+1. Allocate two chunks. Size of second chunk shoud be 0x101.
+2. Allocate 7 chunks whose size are 0x181.
+3. Free chunks whose indexes are between 3 and 9.(tcache becomes saturated with 7 chunks)
+4. Free second chunk. This freed chunk goes in unsorted bin
+5. Allocate a 0x178-size chunk. Then third chunk is overwritten with size field of 0x80 and fd value of libc address. (pointer of third chunk is not deleted)
 
 ### Exploit
 
