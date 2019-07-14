@@ -29,7 +29,8 @@ rep는 ecx레지스터가 0인 동안에 뒤에 오는 명령어를 반복하는
 04: ...
 05: BE 00 44 61 00 mov esi, offset _src_mem
 06: BF C0 43 61 00 mov edi, offset _dest_mem
-07: F3 A5 rep movsd ; ecx에 있는 값 만큼 movsd를 반복(src에서 dest로 32바이트 복사)
+; ecx에 있는 값 만큼 movsd를 반복(32바이트 복사)
+07: F3 A5 rep movsd
 ```
 
 위 어셈블리 코드는 아래 코드랑 같다.
@@ -47,7 +48,8 @@ scasb와 rep를 이용해서 strlen() 함수를 아래와 같이 구현할 수 �
 01: 30 C0 xor al, al ; al 레지스터를 0으로 초기화
 02: 89 FB mov ebx, edi ; 문자열 주소를 ebx 레지스터에 백업
 03: F2 AE repne scasb ; 문자열에서 NULL 바이트를 찾을 때 까지 비교
-; edi는 NULL 바이트가 있는 문자열의 주소이므로 이 연산 후 edi는 문자열의 길이와 같다.
+; edi는 NULL 바이트가 있는 문자열의 주소이므로
+; 이 연산 후 edi는 문자열의 길이와 같다.
 04: 29 DF sub edi, ebx
 ```
 
