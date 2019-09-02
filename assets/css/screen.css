@@ -1700,7 +1700,7 @@ a.archive-post:hover {
 
 /* On page2+ make all the headers smaller */
 .paged .main-header {
-    max-height: 35vh;
+    max-height: 100vh;
 }
 
 /* On page2+ show extra pagination controls at the top of post list */
