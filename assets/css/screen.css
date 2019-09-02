@@ -1532,8 +1532,8 @@ a.archive-post:hover {
 }
 
 .read-next-story .post {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 .read-next-story .post:before {
