@@ -4,7 +4,7 @@ cover: 'files/redblacktree-with-c++-1/pic_1.png'
 navigation: true
 title: '자료구조) C++로 레드 블랙 트리 삽입&삭제 구현 - 1'
 date: 2019-02-18
-tags: c++ 자료구조 레드블랙트리
+tags: c++ 자료구조
 subclass: 'post'
 logo: 'assets/images/ghost.png'
 author: lanphere

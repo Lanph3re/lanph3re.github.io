@@ -4,7 +4,7 @@ cover: 'assets/images/cover8.jpg'
 navigation: true
 title: Rust로 PEViewer 프로젝트 계획
 date: 2019-06-26
-tags: 공부 주저리
+tags: 공부 개발
 subclass: 'post'
 logo: 'assets/images/ghost.png'
 author: lanphere
