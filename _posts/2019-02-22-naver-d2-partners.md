@@ -4,7 +4,7 @@ cover: 'files/naver-d2-partners/cover.jpg'
 navigation: true
 title: 네이버 D2 Partners 행사 후기
 date: 2019-02-22
-tags: naver
+tags:
 subclass: 'post'
 logo: 'assets/images/ghost.png'
 author: lanphere
