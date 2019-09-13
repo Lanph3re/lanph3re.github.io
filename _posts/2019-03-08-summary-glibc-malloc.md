@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/cover8.jpg'
 navigation: true
-title: Glibc malloc heap chunk 정리
+title: Glibc Malloc 정리
 date: 2019-03-08
 tags: glibc heap malloc pwn
 subclass: 'post'
