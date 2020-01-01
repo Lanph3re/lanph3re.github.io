@@ -55,7 +55,10 @@ current: archive
           {% endif %}
           {% endunless %}
           <li>
-            <div style="width:60px;float:left;">{{ post.date | date: "%b %-d" }}</div>
+            <!-- <div style="width:65px;float:left;">{{ post.date | date: "%b %-d" }}</div> -->
+            <span class="tag-date">
+              {{ post.date | date_to_string }}
+            </span>
             <a class="archive-post" href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
           </li>
           {% endfor %}
