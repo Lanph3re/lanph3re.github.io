@@ -1243,7 +1243,7 @@ a.archive-post:hover {
    text column to break out. */
 .post-content img {
     display: block;
-    max-width: 126%;
+    max-width: 95%;
     height: auto;
     padding: 1.3em 0;
     /* Centers an image by (1) pushing its left edge to the
